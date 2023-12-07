@@ -10,8 +10,6 @@ impl Circuit<Fr> for SimpleCircuit {
     fn synthesize<CS: ConstraintSystem<Fr>>(self, cs: &mut CS) -> Result<(), SynthesisError> {
         let _value_var = cs.alloc(|| "value", || self.value.ok_or(SynthesisError::AssignmentMissing))?;
         
-        // This is a trivial circuit that does not enforce any constraints
-        // In a real-world application, you would add constraints here
         cs.enforce(
 	    || "constraint _value_var",
             |lc| lc + _value_var,
